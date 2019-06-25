@@ -22,8 +22,9 @@ public class ServletSalao extends HttpServlet {
 		String tipoServico = request.getParameter("tipoServico");
 		String valor = request.getParameter("valor");
 		String situacao = request.getParameter("situacao");
+		String data = request.getParameter("data");
 		System.out.println("Nome digitado " + nome + " Telefone " + telefone + " Horario Marcado " + horarioMarcado
-				+ " Tipo de Serviço " + tipoServico + " Valor " + valor + " Situação Pagamento " + situacao);
+				+ " Tipo de Serviço " + tipoServico + " Valor " + valor + " Situação Pagamento " + situacao + " Data " + data);
 
 		Painel obj = new Painel();
 		obj.setNome(request.getParameter("nome"));
@@ -32,6 +33,7 @@ public class ServletSalao extends HttpServlet {
 		obj.setTipoServico(request.getParameter("tipoServico"));
 		obj.setValor(request.getParameter("valor"));
 		obj.setSituacao(request.getParameter("situacao"));
+		obj.setData(request.getParameter("data"));
 
 		PrintWriter saida = response.getWriter();
 

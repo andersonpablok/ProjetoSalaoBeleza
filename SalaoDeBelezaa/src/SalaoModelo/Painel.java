@@ -17,6 +17,7 @@ public class Painel {
 	private String tipoServico;
 	private String valor;
 	private String situacao;
+	private String data;
 
 	public Painel() {
 		setNome("");
@@ -25,7 +26,8 @@ public class Painel {
 		setTipoServico("");
 		setValor("");
 		setSituacao("");
-}
+		setData("");
+	}
 
 	public int getCod() {
 		return cod;
@@ -54,6 +56,7 @@ public class Painel {
 	public String getHorarioMarcado() {
 		return horarioMarcado;
 	}
+
 	public void setHorarioMarcado(String horarioMarcado) {
 		this.horarioMarcado = horarioMarcado;
 	}
@@ -62,61 +65,48 @@ public class Painel {
 		return tipoServico;
 	}
 
-
-
-
-
 	public void setTipoServico(String tipoServico) {
 		this.tipoServico = tipoServico;
 	}
-
-
-
-
 
 	public String getValor() {
 		return valor;
 	}
 
-
-
-
-
 	public void setValor(String valor) {
 		this.valor = valor;
 	}
-
-
-
-
 
 	public String getSituacao() {
 		return situacao;
 	}
 
-
-
-
-
 	public void setSituacao(String situacao) {
 		this.situacao = situacao;
 	}
 
+	public String getData() {
+		return data;
+	}
 
-
-
+	public void setData(String data) {
+		this.data = data;
+	}
 
 	public boolean inserir() {
 
- Connection conexao = new ConectarJDBC().getConectar();
- if (conexao != null) {
-  String sql = "insert into painel(" + "nome,  " 
-		    + "telefone,         " 
+		Connection conexao = new ConectarJDBC().getConectar();
+		if (conexao != null) {
+			String sql = "insert into painel(" 
+			+ "nome,  "		    
+			+ "telefone,         " 
 		    + "horario_marcado,         "
 		    + "tipo_servico,  " 
 		    + "valor,   " 
-		    + "situacao)" 
+		    + "situacao,"
+		    + "data)" 
 		    + "values(" 
+		    + " ?," 
 		    + " ?," 
 		    + " ?," 
 		    + " ?," 
@@ -134,6 +124,7 @@ public class Painel {
 				prepararSQL.setString(4, tipoServico);
 				prepararSQL.setString(5, valor);
 				prepararSQL.setString(6, situacao);
+				prepararSQL.setString(7, data);
 	
 
 				prepararSQL.execute();
@@ -146,12 +137,12 @@ public class Painel {
 			}
 		}
 		return false;
-	}
-
-	public boolean apagar() {
-
-		Connection conexao = new ConectarJDBC().getConectar();
-		if (conexao != null) {
+		}
+	
+		public boolean apagar() {
+	
+			Connection conexao = new ConectarJDBC().getConectar();
+			if (conexao != null) {
 			String sql = "delete from painel where cod  = ? ";
 
 			try {
@@ -169,19 +160,21 @@ public class Painel {
 			}
 		}
 		return false;
-	}
+		
+		}
 
- public boolean atualizar() {
-
- Connection conexao = new ConectarJDBC().getConectar();
- if (conexao != null) {
-  String sql = "update painel set "
+	public boolean atualizar() {
+	
+	 Connection conexao = new ConectarJDBC().getConectar();
+	 if (conexao != null) {
+	  String sql = "update painel set "
       + " nome = ?,  " 
       + " telefone = ?,          " 
       + " horario_marcado = ?,          "
       + " tipo_servico = ?,    " 
       + " valor = ?,      " 
       + " situacao = ?,    " 
+      + " data = ?,    " 
       + " where cod  = ? ";
 
 			try {
@@ -193,7 +186,8 @@ public class Painel {
 				prepararSQL.setString(4, tipoServico);
 				prepararSQL.setString(5, valor);
 				prepararSQL.setString(6, situacao);
-				prepararSQL.setInt(7, cod);
+				prepararSQL.setString(7, data);
+				prepararSQL.setInt(8, cod);
 
 				prepararSQL.execute();
 				prepararSQL.close();
@@ -205,9 +199,9 @@ public class Painel {
 			}
 		}
 		return false;
-	}
+		}
 
-	public Painel getPainel(int cod) {
+		public Painel getPainel(int cod) {
 		try {
 			Connection conexao = new ConectarJDBC().getConectar();
 			PreparedStatement ps = conexao.prepareStatement("select * from painel where cod = ? ");
@@ -224,6 +218,7 @@ public class Painel {
 				p.setTipoServico(rs.getString("tipo_servico"));
 				p.setValor(rs.getString("valor"));
 				p.setSituacao(rs.getString("situacao"));
+				p.setData(rs.getString("data"));
 	
 
 			}
@@ -236,9 +231,9 @@ public class Painel {
 		}
 
 		return null;
-	}
+		}
 
-	public List<Painel> getLista() {
+		public List<Painel> getLista() {
 		try {
 			Connection conexao = new ConectarJDBC().getConectar();
 			PreparedStatement ps = conexao.prepareStatement("select * from painel");
@@ -255,6 +250,7 @@ public class Painel {
 				p.setTipoServico(rs.getString("tipo_servico"));
 				p.setValor(rs.getString("valor"));
 				p.setSituacao(rs.getString("situacao"));
+				p.setData(rs.getString("data"));
 				lsPainel.add(p);
 
 			}
@@ -267,27 +263,7 @@ public class Painel {
 		}
 
 		return null;
-	}
-
-		public String getCorStatus() {
-		if (nome.equals("Pré-Operatório")) {
-			return "table-warning";
+		
+			}
+		
 		}
-		if (nome.equals("Em sala cirúrgica")) {
-			return "table-danger";
-
-		}
-		if (nome.equals("Em recuperação")) {
-			return "table-success";
-
-		}
-
-		if (nome.equals("Transferido")) {
-			return "table-primary";
-
-		}
-		return ""; 
-
-	}
-
-}

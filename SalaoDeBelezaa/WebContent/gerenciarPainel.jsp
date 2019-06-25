@@ -23,6 +23,7 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   dados += "&tipoServico="+ document.getElementById("tipoServico").value;
   dados += "&valor="+ document.getElementById("valor").value;
   dados += "&situacao="+ document.getElementById("situacao").value;
+  dados += "&data="+ document.getElementById("data").value;
   dados += "&cod="+ document.getElementById("cod").value;
   return dados;
  }
@@ -79,6 +80,9 @@ href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
   function novo() {
    window.location.replace('gerenciarPainel.jsp');
   }
+  function pagPainel() {
+	   window.location.replace('painel.jsp');
+	  }
 </script>
 
 <%
@@ -128,7 +132,7 @@ if(request.getParameter("cod")!=null){
 
   <div class="form-row">
     <div class="form-group col-md-3" >
-    <label for="local">Status:</label> <select class="form-control"
+    <label for="local">Serviço:</label> <select class="form-control"
      value="<% out.print(painel.getTipoServico()); %> "id=tipoServico name="local"> 
      <option>Corte de Cabelo</option>
      <option>Unha</option>
@@ -136,11 +140,15 @@ if(request.getParameter("cod")!=null){
      <option>Escova</option>
     </select>
     
+    
+    
    </div>
    <div class="form-group col-md-3">
     <label for="local">Valor:</label> <input type="text"
      class="form-control" id="valor" value="<% out.print(painel.getValor()); %>" name="local">
    </div>
+   
+   
    
    <div class="form-group col-md-3">
     <label for="local">Situação Pagamento</label> <select class="form-control"
@@ -150,12 +158,17 @@ if(request.getParameter("cod")!=null){
      <option>Dinheiro</option>
     </select>  
    </div> 
-   
+      <div class="form-group col-md-3">
+    <label for="local">Data:</label> <input type="date"
+     class="form-control" id="data" value="<% out.print(painel.getData()); %>" placeholder="Horario Marcado"
+     name="local" >
+   </div>
    
   </div>
   <button type="button" class="btn btn-secondary" onclick="novo()">Novo</button>
   <button type="button" class="btn btn-primary" onclick="gravar()">Gravar</button>
   <button type="button" class="btn btn-danger" onclick="apagar()">Apagar</button>
+  <button type="button" class="btn btn-danger" onclick="pagPainel()">Agenda</button>
  </form>
 </div>
 </body>
