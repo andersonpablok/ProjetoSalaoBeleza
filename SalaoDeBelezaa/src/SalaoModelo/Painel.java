@@ -174,7 +174,7 @@ public class Painel {
       + " tipo_servico = ?,    " 
       + " valor = ?,      " 
       + " situacao = ?,    " 
-      + " data = ?,    " 
+      + " data = ?    " 
       + " where cod  = ? ";
 
 			try {
