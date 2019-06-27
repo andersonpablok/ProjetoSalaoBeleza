@@ -1,8 +1,5 @@
 package SalaoServlet;
 
-import java.io.IOException;
-import java.io.PrintWriter;
-import java.rmi.ServerException;
 
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -23,8 +20,6 @@ public class ServletSalao extends HttpServlet {
 		String valor = request.getParameter("valor");
 		String situacao = request.getParameter("situacao");
 		String data = request.getParameter("data");
-		System.out.println("Nome digitado " + nome + " Telefone " + telefone + " Horario Marcado " + horarioMarcado
-				+ " Tipo de Serviço " + tipoServico + " Valor " + valor + " Situação Pagamento " + situacao + " Data " + data);
 
 		Painel obj = new Painel();
 		obj.setNome(request.getParameter("nome"));
