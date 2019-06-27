@@ -117,7 +117,7 @@ if(request.getParameter("cod")!=null){
    </div>
 
 
-   <div class="form-group col-md-3" >
+   <div class="form-group col-md-3 .phone-mask" >
      <label for="local">Telefone:</label> <input type="text"
      class="form-control" id="telefone" value="<% out.print(painel.getTelefone()); %>" placeholder="Telefone do Cliente"
      name="telefone">
