@@ -15,7 +15,44 @@
 <body>
 
 	<script type="text/javascript">
-		function dadosForm() {
+	
+	function validar(){
+		if(
+		(document.getElementById("nome").value.length < 3) 				|| 
+		(document.getElementById("telefone").value.length < 9) 			||
+		(document.getElementById("horarioMarcado").value.length < 5) 	||
+	    (document.getElementById("tipoServico").value.length < 2) 		||
+	    (document.getElementById("valor").value.length < 2)				||
+		(document.getElementById("data").value.length < 10))
+		{
+			alert('Por favor, preencha o campo que falta.');
+		
+		} else {
+			
+			alert("validação ok")
+				}
+		}
+	
+	
+	function validar(){
+		if(
+		(document.getElementById("nome").value.length < 3) 				|| 
+		(document.getElementById("telefone").value.length < 9) 			||
+		(document.getElementById("horarioMarcado").value.length < 5) 	||
+	    (document.getElementById("tipoServico").value.length < 2) 		||
+	    (document.getElementById("valor").value.length < 2)				||
+		(document.getElementById("data").value.length < 10))
+		{
+			alert('Por favor, preencha o campo que falta');
+		
+		} else {
+			
+			alert("validação ok")
+				}
+		}
+
+	function dadosForm() {
+			
 			var dados = "";
 			dados += "nome="+document.getElementById("nome").value;
 			dados += "&telefone="+document.getElementById("telefone").value;
@@ -26,6 +63,7 @@
 			dados += "&data="+document.getElementById("data").value;
 			dados += "&cod=" +document.getElementById("cod").value;
 			return dados;
+				
 		}
 
 		function gravar() {
@@ -40,7 +78,8 @@
 						document.getElementById("msg").className = "alert alert-info";
 					} else {
 						document.getElementById("msg").className = "alert alert-danger";
-					}
+					}			
+					
 				}
 			};
 
@@ -81,6 +120,7 @@
 		function pagPainel() {
 			window.location.replace('painel.jsp');
 		}
+	
 	</script>
 
 	<%
@@ -119,8 +159,8 @@
 				</div>
 
 				<div class="form-group col-md-3">
-					<label for="local">Horario Marcado:</label> <input type="time"
-						class="form-control" id="horarioMarcado"
+					<label for="local">Horario Marcado:</label> <input type="time" 
+						class="form-control" id="horarioMarcado" 
 						value="<%out.print(painel.getHorarioMarcado());%>"
 						placeholder="Horario Marcado" name="local">
 				</div>
@@ -129,7 +169,7 @@
 			<div class="form-row">
 				<div class="form-group col-md-3">
 					<label for="local">Serviço:</label> <select class="form-control"
-						value="<%out.print(painel.getTipoServico());%> " id=tipoServico
+						value="<%out.print(painel.getTipoServico());%>" id="tipoServico"
 						name="local">
 						<option>Corte de Cabelo</option>
 						<option>Unha</option>
@@ -167,6 +207,7 @@
 
 			</div>
 			<button type="button" class="btn btn-secondary" onclick="novo()">Novo</button>
+			<button type="button" class="btn btn-primary" onclick="validar()">Validar</button>
 			<button type="button" class="btn btn-primary" onclick="gravar()">Gravar</button>
 			<button type="button" class="btn btn-danger" onclick="apagar()">Apagar</button>
 			<button type="button" class="btn btn-danger" onclick="pagPainel()">Agenda</button>
