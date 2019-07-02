@@ -32,7 +32,7 @@ DROP TABLE IF EXISTS `painel`;
 CREATE TABLE IF NOT EXISTS `painel` (
   `cod` int(11) NOT NULL AUTO_INCREMENT,
   `nome` varchar(100) NOT NULL,
-  `telefone` varchar(12) NOT NULL,
+  `telefone` varchar(15) NOT NULL,
   `horario_marcado` varchar(10) NOT NULL,
   `tipo_servico` varchar(30) NOT NULL,
   `valor` varchar(10) NOT NULL,
