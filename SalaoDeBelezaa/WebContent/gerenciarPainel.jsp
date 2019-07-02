@@ -121,7 +121,11 @@
 	%>
 
 	<div class="container">
+	<center>
 		<h2>Gerenciar o Painel do Salão de Beleza</h2>
+		<img height="100" width="200"
+			src="https://www.opas.org.br/wp-content/uploads/2018/01/cabelo.jpg">
+			</center>
 		<form id="formulario">
 			<input type="hidden" value="<%out.print(painel.getCod());%>" id="cod" />
 			<div id="msg"></div>
